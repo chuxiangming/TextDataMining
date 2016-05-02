@@ -19,7 +19,7 @@ while True:
         seg_list = jieba.cut(line)
         for seg in seg_list:
             if seg.encode('utf-8') not in stopwords:
-                fout.write(seg)
+                fout.write(seg.encode('gbk'))
                 fout.write(' ')
         fout.write('\n')
     else:
