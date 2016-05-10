@@ -1,1 +1,10 @@
-Brinton, Christopher G., and Mung Chiang. "Social learning networks: A brief survey." Information Sciences and Systems (CISS), 2014 48th Annual Conference on. IEEE, 2014.
+[1]  数据挖掘导论
+[2]  Brinton, Christopher G., and Mung Chiang. "Social learning networks: A brief survey." Information Sciences and Systems (CISS), 2014 48th Annual Conference on. IEEE, 2014.
+[3]  WW Moe, PS Fader (2004),“Capturing Evolving Visit Behavior in Clickstream Data” Journal of Interactive Marketing (2004)
+[4]  Ting, I. H.; Kimble C; Kudenko. D (September 2005). "UBB Mining: Finding Unexpected Browsing Behaviour in Clickstream Data to Improve a Web Site's Design." (PDF). IEEE/WIC/ACM International Conference on Web Intelligence: 179–185. doi:10.1109/WI.2005.153.
+[5]  "Compete CEO: ISPs Sell Clickstreams For $5 A Month". Seeking Alpha. 2007-03-13. Retrieved 2011-09-15.
+[6]  Educational Data Mining: A Review of the State-of-the-Art
+[7]  点击流数据仓库
+[8]  Educational Data Mining: A Review of the State-of-the-Art
+[9]  Learning Analytics: Definitions, Processes and Potential
+[10] http://www.docin.com/p-1062977464.html  这篇文章有我要的图论证明！

@@ -4,7 +4,7 @@
 #define MaxNumWords 5000
 #define MaxEachNumWords 150
 #define MaxNumInstances 300
-#define MaxRuleLength 3
+#define MaxRuleLength 1
 #define MaxNumRules 10000
 
 #define TRUE 1
@@ -39,16 +39,18 @@ struct  InstanceList {	//	记录事件集
 }instanceList[ MaxNumInstances ];
 long numInstances;
 
+long output_count;
+
 void readGate() {	//	读取阈值
 	/*
 	 printf("请输入最小置信度 minconf:");
 	 scanf("%lf",&minconf);
-	 
+	
 	 printf("请输入最小支持度 minsup:");
 	 scanf("%lf",&minsup);
-	 */
-	 minconf = 0;
-	 minsup = 0.003;
+*/
+	 minconf = 0; 
+	 minsup = 0.04;
 } 
 
 void init() {	//	读取分词和关键词数据 ，读取事件 	 
@@ -89,7 +91,7 @@ void init() {	//	读取分词和关键词数据 ，读取事件
 	printf("\n读取完成，共 %ld 个事件， %ld 个单词", numInstances, numWords);
 	printf("\n单词载入1-项集..."); 
 	for(i=0;i<numWords;i++) 
-		if( minsup <= (double)wordList[i].freq/numWords ) {	//	置信度阈值检测
+		if( minsup <= (double)wordList[i].freq/numInstances ) {	//	置信度阈值检测
 			ruleList[numRules].support=wordList[i].freq;
 			ruleList[numRules].length=1;
 			ruleList[numRules].words[0]=i;
@@ -129,7 +131,8 @@ void outputRule(struct RuleList rule) {
 	for(i=0;i<rule.length;i++) {
 		printf("%s ",wordList[rule.words[i]].data);
 	}
-	printf("%lf\n",(double)rule.support/numWords);
+	printf("%lf\n",(double)rule.support/numInstances);
+	output_count++;
 }
 
 void Aprori() {	//	生成繁项集 
@@ -143,14 +146,14 @@ void Aprori() {	//	生成繁项集
 		 	tempRule=ruleList[now];
 			tempRule.length++;
 			for( ; numWord<numWords; numWord++) 
-				if(minsup <= (double)wordList[numWord].freq/numWords) {
+				if(minsup <= (double)wordList[numWord].freq/numInstances) {
 					tempRule.words[tempRule.length-1]=numWord;
 					tempRule.support=getSupport(tempRule);	//	计算支持度
 					
 					//DEBUG
 				//	outputRule(tempRule);
 					 
-					tempSupport=(double)tempRule.support/numWords;	//	支持度 
+					tempSupport=(double)tempRule.support/numInstances;	//	支持度 
 					if(minsup<=tempSupport) {	//	支持度检查
 						ruleList[numRules]=tempRule;	//	增加子节点 
 						++numRules;
@@ -171,6 +174,7 @@ int main() {
 	Aprori(); 
 	RuleGen(); 
 	flush();
+	printf("输出规则总数为：%ld",output_count);
 	system("pause");
 	return 0;
 }
