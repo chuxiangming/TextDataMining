@@ -11,7 +11,7 @@ fin = open("data.txt","r");
 fout = open("wordWeight.txt","w");
 
 stopwords={}.fromkeys([line.rstrip() for line in open('stopwords.txt')])
-
+jieba.load_userdict("userdict.txt")
 allText = ""
 while True:
     line = fin.readline()
@@ -21,14 +21,14 @@ while True:
         break
     
 fout.write("textrank:\n")
-for word, weight in jieba.analyse.textrank(allText,50, withWeight=True):
+for word, weight in jieba.analyse.textrank(allText,1000, withWeight=True):
     if word.encode('utf-8') not in stopwords:
         fout.write(word)
         fout.write('\t')
         fout.write(str(weight))
         fout.write('\n');
 fout.write("TF-IDF:\n")
-for word, weight in jieba.analyse.extract_tags(allText,50, withWeight=True):
+for word, weight in jieba.analyse.extract_tags(allText,1000, withWeight=True):
     if word.encode('utf-8') not in stopwords:
         fout.write(word)
         fout.write('\t')
